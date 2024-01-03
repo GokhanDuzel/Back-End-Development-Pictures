@@ -35,8 +35,6 @@ def get_pictures():
     """return all pictures in json format"""
     if data:
         return data, 200
-    
-    return {"message": "Pictures not found"}, 404
 
 
 ######################################################################
@@ -50,7 +48,7 @@ def get_picture_by_id(id):
         if picture['id'] == id:
             return picture, 200
         
-    return {"message": "Picture not found"}, 404
+    return {"message": "picture not found"}, 404
 
 
 ######################################################################
@@ -79,6 +77,10 @@ def update_picture(id):
         if picture['id'] == id:
             picture.update(updated_pic)
             return {"message": f"Picture with id {id} has been updated"}, 200
+    # for index, picture in enumerate(data):
+    #     if picture["id"] == id:
+    #         data[index] = updated_pic
+    #         return picture, 201
     
     return {"message": "picture not found"}, 404
 
@@ -93,6 +95,6 @@ def delete_picture(id):
     for picture in data:
         if picture['id'] == id:
             data.remove(picture)
-            return {}, 204
+            return "", 204
 
     return {"message": "picture not found"}, 404
